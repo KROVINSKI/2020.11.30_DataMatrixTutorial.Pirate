@@ -14,7 +14,7 @@
 
 
 # -----------------------------
-# 8.1a Creating the Data Frame
+# 8.0.a Creating the Data Frame
 # -----------------------------
 
 # Create a dataframe of boat sale data called bsale
@@ -28,7 +28,7 @@ bsale <- data.frame(name = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
 
 
 # -----------------------------
-# 8.1b Exploring dataset aspects
+# 8.0.b Exploring dataset aspects
 # -----------------------------
 
 # Explore the bsale dataset:
@@ -65,7 +65,7 @@ nrow(bsale)     # How many rows are there in the data?
 
 
 # -----------------------------
-# 8.1c Statistics with Column Vectors
+# 8.0.c Statistics with Column Vectors
 # -----------------------------
 # Calculating statistics from column vectors
 
@@ -117,9 +117,171 @@ bsale.2 <- bsale[c("price", "cost")]
 # Change the names of the columns to "p" and "c"
 names(bsale.2) <- c("p", "c")
 
-# Create a dataframe called old.black.bsale containing only data from black boats older than 50 years
+# Create a dataframe called old.black.bsale containing only data 
+#                           from black boats older than 50 years
 old.black.bsale <- subset(bsale, color == "black" & age > 50)
 # 3 observations
 # 8 variables
+
+
+
+
+# -----------------------------
+# 8.1 What are matrices and dataframes?
+# -----------------------------
+# 
+# By now, you should be comfortable with scalar and vector objects. 
+# However, you may have noticed that neither object types are appropriate
+# for storing lots of data – such as the results of a survey or experiment. 
+# Thankfully, R has two object types that represent large data structures much better:
+#                                                 matrices and dataframes.
+
+# Matrices and dataframes are very similar to spreadsheets in Excel or data files in SPSS. 
+# Every matrix or dataframe contains rows (call that number m) and columns (n). 
+# Thus, wile a vector has 1 dimension (its length), 
+#                              matrices and dataframes both have 2-dimensions – 
+#                             representing their width and height. 
+# You can think of a matrix or dataframe as a combination of n vectors, 
+#                             where each vector has a length of m.
+
+
+# While matrices and dataframes look very similar, they aren’t exactly the same. 
+# While a matrix can contain either character or numeric columns, 
+# a dataframe can contain both numeric and character columns. 
+# Because dataframes are more flexible, most real-world datasets, 
+# such as surveys containing both numeric (e.g.; age, response times) and 
+# character (e.g.; sex, favorite movie) data, will be stored as dataframes in R.
+# 
+# WTF – If dataframes are more flexible than matrices, why do we use matrices at all? 
+# The answer is that, because they are simpler, matrices take up less computational space than dataframes. 
+# Additionally, some functions require matrices as inputs to ensure that they work correctly.
+# 
+# In the next section, we’ll cover the most common functions for creating matrix and dataframe objects. 
+# We’ll then move on to functions that take matrices and dataframes as inputs.
+
+
+
+# -----------------------------
+# 8.2 Creating matrices and dataframes
+# -----------------------------
+
+
+
+# There are a number of ways to create your own matrix and dataframe objects in R. 
+# The most common functions are presented in Table 8.1. 
+# Because matrices and dataframes are just combinations of vectors, 
+#     each function takes one or more vectors as inputs, 
+#     and returns a matrix or a dataframe.
+
+
+# Table 8.1
+
+# Function	              Description	                      Example
+
+##  Combine R Objects by Rows or Columns
+
+# cbind(a, b, c)          Combine vectors as                cbind(1:5, 6:10, 11:15)
+#                         columns in a matrix
+
+# rbind(a, b, c)          Combine vectors                   rbind(1:5, 6:10, 11:15)
+#                         as rows in a matrix  
+
+
+# matrix(x,               Create a matrix                   matrix(x = 1:12, nrow = 3, ncol = 4)
+#        nrow,            from a vector x
+#        ncol, 
+#        byrow)
+
+
+# data.frame()            Create a dataframe                data.frame("age" = c(19, 21), sex = c("m", "f"))
+#                         from named columns
+
+
+
+
+# Table 8.1- cbind in action
+# - - - - - - - - - - - - - -
+
+# Function	              Description	              Example
+
+##  Combine R Objects by Rows or Columns
+
+# cbind(a, b, c)          Combine vectors as        cbind(1:5, 6:10, 11:15)
+#                         columns in a matrix
+
+a81 <- (1:5)
+b81 <- (6:10)
+c81 <- (11:15)
+cbind(a81, b81, c81) 
+#      a81 b81 c81
+# [1,]   1   6  11
+# [2,]   2   7  12
+# [3,]   3   8  13
+# [4,]   4   9  14
+# [5,]   5  10  15
+
+
+
+# Table 8.1- rbind in action
+# - - - - - - - - - - - - - -
+
+
+# rbind(a, b, c)          Combine vectors                   rbind(1:5, 6:10, 11:15)
+#                         as rows in a matrix  
+
+a81 <- (1:5)
+b81 <- (6:10)
+c81 <- (11:15)
+rbind(a81, b81, c81) 
+#      [,1] [,2] [,3] [,4] [,5]
+# a81    1    2    3    4    5
+# b81    6    7    8    9   10
+# c81   11   12   13   14   15
+
+
+# Table 8.1- matrix examples
+# - - - - - - - - - - - - - -
+
+# matrix(x,               Create a matrix                   matrix(x = 1:12, nrow = 3, ncol = 4)
+#        nrow,            from a vector x
+#        ncol, 
+#        byrow)
+
+x <- (1:12)
+matrix((x = (1:12)), nrow = 3, ncol = 4)
+# > matrix((x = (1:12)), nrow = 3, ncol = 4)
+#       [,1] [,2] [,3] [,4]
+# [1,]    1    4    7   10
+# [2,]    2    5    8   11
+# [3,]    3    6    9   12
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#**************E*N*D*************# 
+#*********************************
+## END OF SCRIPT | END OF DOCUMENT 
+#*********************************
+
+
+
 
 
